@@ -1,4 +1,4 @@
 import { friendsReducer, fetchingReducer } from './friends';
-import { combinedReducer } from 'redux';
+import { combineReducers } from 'redux';
 
-export default combinedReducer({friendsReducer, fetchingReducer})
+export default combineReducers({friendsReducer, fetchingReducer})
