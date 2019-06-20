@@ -7,12 +7,12 @@ import { FriendList } from '../components/FriendsList';
 
 
 export const FriendsView = props => {
-    console.log(props)
     useEffect(() => {
-        debugger
         props.getFriends()
-    }, [props]);
-
+    }, []);
+    if(props.fetchingFriends) {
+        return <p>Fetching your friends..</p>
+    }
     return <FriendList friends={props.friends} />
 }
 
@@ -22,7 +22,8 @@ export const FriendsView = props => {
 
 const mapState = state => {
     return {
-        friends: state.friendsReducer.friends
+        friends: state.friendsReducer.friends,
+        fetchingFriends: state.friendsReducer.fetchingFriends
     }
 }
 

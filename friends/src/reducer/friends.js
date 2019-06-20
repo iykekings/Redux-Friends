@@ -1,47 +1,41 @@
-import { 
-    GET_ALL_FRIENDS,
-    GET_FRIEND,
-    UPDATE_FRIEND,
-    DELETE_FRIEND,
-    FETCHING,
-    SUCCESS,
-    ERROR, 
-    ADD_FRIEND} from "../actions/actionTypes";
+import * as types from "../actions/actionTypes";
 
 const initialState = {
-    friends: [{
-        id: 1,
-        name: 'Joe',
-        age: 24,
-        email: 'joe@lambdaschool.com',
-      }],
-    fetching: false,
+    deletingFriend: false,
+    fetchingFriends: false,
+    friends: [],
+    loggingIn: false,
+    savingFriends: false,
+    updatingFriend: false,
     error: null
-}
+    }
+
 
 export const friendsReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_ALL_FRIENDS:
-        case ADD_FRIEND:
-        case UPDATE_FRIEND:
-        case DELETE_FRIEND:
-            return { ...state, friends: action.friends }
-        case GET_FRIEND:
-            return { ...state, 
-                friends: action.friend }
-        default:
-            return state
-    }
-}
-
-export const fetchingReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case FETCHING:
-            return {...state, fetching: true}
-        case SUCCESS:
-            return {...state, fetching: false}
-        case ERROR:
-            return {...state, error: null, fetching: false}
+        case types.GET_ALL_FRIENDS:
+            return { ...state, fetchingFriends: true }
+        case types.ADD_FRIEND:
+            return { ...state, savingFriends: true }
+        case types.UPDATE_FRIEND:
+            return { ...state, updatingFriend: true }
+        case types.DELETE_FRIEND:
+            return { ...state, deletingFriend: true }
+        case types.GET_FRIEND:
+            return { ...state, fetchingFriends: true }
+        case types.LOGIN:
+            return { ...state, loggingIn: true}
+        case types.SUCCESS:
+            return {...state,
+                fetchingFriends: false,
+                deletingFriend: false,
+                updatingFriend: false,
+                savingFriends: false,
+                loggingIn: false,
+                friends: action.payload,
+            }
+        case types.ERROR:
+                return {...state, error: action.payload}
         default:
             return state
     }
