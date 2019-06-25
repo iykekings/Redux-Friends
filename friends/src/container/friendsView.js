@@ -12,6 +12,8 @@ export const FriendsView = props => {
     }, []);
     if(props.fetchingFriends) {
         return <p>Fetching your friends..</p>
+    } else if(props.error) {
+        return <p style={{color: 'red'}}>{props.error}</p>
     }
     return <FriendList friends={props.friends} />
 }
