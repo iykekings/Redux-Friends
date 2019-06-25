@@ -27,7 +27,7 @@ export const login = (username, password) => dispatch => {
   dispatch({ type: types.LOGIN });
   Axios.post(`${baseUrl}/login`, { username, password })
     .then(res => {
-      localStorage.setItem("token", JSON.stringify(res.data.payload));
+      localStorage.setItem("token", res.data.payload);
       dispatch({ type: types.LOGIN_SUCCESS });
     })
     .catch(err => {
