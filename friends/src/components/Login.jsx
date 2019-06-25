@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { login } from "../actions/actionCreators";
+import { login, authFriend } from "../actions/actionCreators";
 
 const Login = props => {
   useEffect(() => {
     if(props.loggedIn) {
       props.history.push('/friends')
     }
+    props.authFriend()
   }, [props.loggedIn])
   const [user, setUser] = useState({ username: "", password: "" });
   const handleInput = target => setUser({ ...user, [target.id]: target.value });
@@ -15,7 +16,7 @@ const Login = props => {
       {props.loggingIn && <p className="loading">Logging in...</p>}
       <form>
         <input
-          type="test"
+          type="text"
           id="username"
           value={user.username}
           onChange={e => handleInput(e.target)}
@@ -46,5 +47,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { login }
+  { login, authFriend }
 )(Login);

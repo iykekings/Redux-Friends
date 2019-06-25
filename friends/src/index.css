@@ -22,3 +22,7 @@ code {
   position: absolute;
   z-index: 100;
 }
+
+a.active {
+  color: red;
+}

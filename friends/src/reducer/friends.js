@@ -37,6 +37,7 @@ export const friendsReducer = (state = initialState, action) => {
         updatingFriend: false,
         savingFriends: false,
         loggingIn: false,
+        error: null,
         friends: action.payload
       };
     case types.ERROR:

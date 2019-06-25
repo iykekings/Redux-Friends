@@ -3,7 +3,7 @@ import Login from './Login'
 
 const Protected = props  => {
     const verify = () => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token') || '';
         if(!!token) {
             return true
         }
